@@ -14,20 +14,21 @@ export default async function LatestInvoices() {
       </h2>
       <div className="flex grow flex-col justify-between rounded-xl bg-gray-50 p-4">
         <div className="bg-white px-6">
-          {latestInvoices.map((invoice, i) => {
+          {latestInvoices.map((invoice: any, i: number) => {
             return (
               <div
                 key={invoice.id}
                 className={clsx(
-                  'flex flex-row items-center justify-between py-4',
+                  "flex flex-row items-center justify-between py-4",
                   {
-                    'border-t': i !== 0,
-                  },
+                    "border-t": i !== 0,
+                  }
                 )}
               >
                 <div className="flex items-center">
                   <Image
-                    src={"http://localhost:1337" + invoice.customer.image.url}
+                    src={process.env.STRAPI_URL + invoice.customer.image.url}
+                    alt={invoice.customer.name}
                     className="mr-4 rounded-full"
                     width={32}
                     height={32}
